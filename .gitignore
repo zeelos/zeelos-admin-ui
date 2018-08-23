@@ -1,0 +1,35 @@
+# Binary files #
+*.class
+
+# Maven build files #
+target
+backend/src/main/webapp/
+
+# Eclipse files #
+bin
+.classpath
+.project
+.settings
+
+# IntelliJ Config Files #
+.idea
+*.iml
+
+# Visual Studio Code Files
+.vscode/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Node filesA
+node
+node_modules
+dist
+build
+npm-debug.log
+.env
+
+# Various OS dependant artifcats
+.DS_Store
