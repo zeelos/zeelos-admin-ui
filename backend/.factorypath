@@ -1,6 +1,4 @@
-gi<factorypath>
-
-gi<factorypath>
+<factorypath>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/thorntail/undertow/2.3.0.Final/undertow-2.3.0.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/thorntail/container/2.3.0.Final/container-2.3.0.Final.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/thorntail/spi/2.3.0.Final/spi-2.3.0.Final.jar" enabled="true" runInBatchMode="false"/>
