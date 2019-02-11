@@ -8,8 +8,9 @@
       </div>
       <div class="card-body">
         <div class="form-group">
-          <label>Email address</label>
           <fg-input  type="email"
+                     label="Email address"
+                     required
                      name="email"
                      v-validate="modelValidations.email"
                      :error="getError('email')"
@@ -17,12 +18,13 @@
           </fg-input>
         </div>
         <div class="form-group">
-          <label>Password</label>
           <fg-input  type="password"
                      name="password"
-                     v-validate="modelValidations.email"
+                     label="Password"
+                     required
+                     v-validate="modelValidations.password"
                      :error="getError('email')"
-                     v-model="model.email">
+                     v-model="model.password">
           </fg-input>
         </div>
 

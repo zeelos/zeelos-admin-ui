@@ -1,18 +1,9 @@
 import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 // GeneralViews
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
-
-// User Management Views
-import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
-import Login from 'src/components/Dashboard/Views/Pages/Login.vue'
-import Register from 'src/components/Dashboard/Views/Pages/Register.vue'
-import Lock from 'src/components/Dashboard/Views/Pages/Lock.vue'
-
-
-/*
 // Dashboard pages
-import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
-import Widgets from 'src/components/Dashboard/Views/Dashboard/Widgets.vue'
+const Overview = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Overview.vue')
+const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Widgets.vue')
 
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
@@ -31,30 +22,29 @@ import Icons from 'src/components/Dashboard/Views/Components/Icons.vue'
 import Typography from 'src/components/Dashboard/Views/Components/Typography.vue'
 
 // Forms pages
-import RegularForms from 'src/components/Dashboard/Views/Forms/RegularForms.vue'
-import ExtendedForms from 'src/components/Dashboard/Views/Forms/ExtendedForms.vue'
-import ValidationForms from 'src/components/Dashboard/Views/Forms/ValidationForms.vue'
-import Wizard from 'src/components/Dashboard/Views/Forms/Wizard.vue'
+const RegularForms  = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/RegularForms.vue')
+const ExtendedForms = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/ExtendedForms.vue');
+const ValidationForms = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/ValidationForms.vue')
+const Wizard = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/Wizard.vue');
 
 // TableList pages
-import RegularTables from 'src/components/Dashboard/Views/Tables/RegularTables.vue'
-import ExtendedTables from 'src/components/Dashboard/Views/Tables/ExtendedTables.vue'
-import PaginatedTables from 'src/components/Dashboard/Views/Tables/PaginatedTables.vue'
+const RegularTables = () => import(/* webpackChunkName: "tables" */ 'src/components/Dashboard/Views/Tables/RegularTables.vue');
+const ExtendedTables = () => import(/* webpackChunkName: "tables" */ 'src/components/Dashboard/Views/Tables/ExtendedTables.vue');
+const PaginatedTables = () => import(/* webpackChunkName: "tables" */ 'src/components/Dashboard/Views/Tables/PaginatedTables.vue');
 // Maps pages
-import GoogleMaps from 'src/components/Dashboard/Views/Maps/GoogleMaps.vue'
-import FullScreenMap from 'src/components/Dashboard/Views/Maps/FullScreenMap.vue'
-import VectorMaps from 'src/components/Dashboard/Views/Maps/VectorMapsPage.vue'
+const GoogleMaps = () => import(/* webpackChunkName: "maps" */ 'src/components/Dashboard/Views/Maps/GoogleMaps.vue')
+const FullScreenMap = () => import(/* webpackChunkName: "maps" */ 'src/components/Dashboard/Views/Maps/FullScreenMap.vue')
+const VectorMaps = () => import(/* webpackChunkName: "maps" */ 'src/components/Dashboard/Views/Maps/VectorMapsPage.vue');
 
 // Calendar
 import Calendar from 'src/components/Dashboard/Views/Calendar/CalendarRoute.vue'
-// Charts
-import Charts from 'src/components/Dashboard/Views/Charts.vue'
-*/
 
 // Topology
 import Topology from 'src/components/Dashboard/Views/Topology.vue'
 
-/*
+// Charts
+const Charts = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Charts.vue')
+
 let componentsMenu = {
   path: '/components',
   component: DashboardLayout,
@@ -170,7 +160,6 @@ let mapsMenu = {
     }
   ]
 }
-*/
 
 let pagesMenu = {
   path: '/pages',
@@ -182,13 +171,11 @@ let pagesMenu = {
       name: 'User Page',
       component: User
     },
-    /*
     {
       path: 'timeline',
       name: 'Timeline Page',
       component: TimeLine
     }
-    */
   ]
 }
 
@@ -211,57 +198,51 @@ let lockPage = {
 }
 
 const routes = [
-  {
-    path: '/',
-    component: DashboardLayout,
-    redirect: '/admin',
-    /*
-      children: [
-      {
-        path: 'calendar',
-        name: 'Calendar',
-        component: Calendar
-      },
-      {
-        path: 'charts',
-        name: 'Charts',
-        component: Charts
-      }
-    ]
-    */
-  },
-/*
+  // {
+  //   path: '/',
+  //   component: DashboardLayout,
+  //   redirect: '/admin/overview',
+  //   children: [
+  //     {
+  //       path: 'calendar',
+  //       name: 'Calendar',
+  //       component: Calendar
+  //     },
+  //     {
+  //       path: 'charts',
+  //       name: 'Charts',
+  //       component: Charts
+  //     }
+  //   ]
+  // },
   componentsMenu,
   formsMenu,
   tablesMenu,
   mapsMenu,
-  */
   pagesMenu,
   loginPage,
   registerPage,
   lockPage,
   {
-    path: '/admin',
+    path: '/',
     component: DashboardLayout,
-    redirect: '/admin/topology',
+    redirect: '/topology',
     children: [
+      // {
+      //   path: 'overview',
+      //   name: 'Overview',
+      //   component: Overview
+      // },
+      // {
+      //   path: 'widgets',
+      //   name: 'Widgets',
+      //   component: Widgets
+      // },
       {
-      /*
-        path: 'overview',
-        name: 'Overview',
-        component: Overview
-      },
-      {
-        path: 'widgets',
-        name: 'Widgets',
-        component: Widgets
-      },
-      */
         path: 'topology',
         name: 'Topology',
         component: Topology
       }
-
     ]
   },
   {path: '*', component: NotFound}

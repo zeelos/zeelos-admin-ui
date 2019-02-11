@@ -131,12 +131,30 @@
     font-size: 22px;
 }
 
-.form-check-radio input[type="radio"]:checked + .form-check-sign::after{
+
+@mixin radio-colors($base-color) {
+  .form-check-radio input[type="radio"] + .form-check-sign::before {
+    color: lighten($base-color, 10);
+  }
+  .form-check-radio input[type="radio"]:checked + .form-check-sign::after{
+    color: $base-color;
     opacity: 1;
+  }
+
+  .form-check-radio input[type="radio"]:disabled + .form-check-sign::before,
+  .form-check-radio input[type="radio"]:disabled + .form-check-sign::after {
+    color: lighten($base-color, 20);
+  }
 }
 
-
-.form-check-radio input[type="radio"]:disabled + .form-check-sign::before,
-.form-check-radio input[type="radio"]:disabled + .form-check-sign::after {
-    color: $dark-gray;
+@mixin checkbox-colors($base-color) {
+  .form-check .form-check-sign:before {
+    background-color: lighten($base-color, 20);
+  }
+  .form-check-label input[type="checkbox"]:checked + .form-check-sign:before{
+    background-color: $base-color;
+  }
 }
+
+@include radio-colors($default-color);
+@include checkbox-colors($default-color);

@@ -265,7 +265,9 @@
 </template>
 <script>
   import CircleChartCard from 'src/components/UIComponents/Cards/CircleChartCard.vue'
-  import {StatsCard, ChartCard, Badge} from 'src/components/UIComponents'
+  import ChartCard from 'src/components/UIComponents/Cards/ChartCard';
+  import StatsCard from 'src/components/UIComponents/Cards/StatsCard';
+  import {Badge} from 'src/components/UIComponents'
   import Loading from 'src/components/Dashboard/Layout/LoadingMainPanel.vue'
   import TaskList from './Widgets/TaskList'
   const WorldMap = () => ({

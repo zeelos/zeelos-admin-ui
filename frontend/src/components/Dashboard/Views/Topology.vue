@@ -11,8 +11,14 @@
     import('@dvsl/zoomcharts/lib/assets/zc.css')
     import zc from '@dvsl/zoomcharts'
 
-    window.ZoomChartsLicense = "";
-    window.ZoomChartsLicenseKey = "";
+    window.ZoomChartsLicense = "ZCS-1zx51p9ww: ZoomCharts SDK Single Developer Licencefor chr..@..os.io (valid for development only); upgrades until: 2019-07-23";
+    window.ZoomChartsLicenseKey = "610c8108ff8ed7b25d96d204d9fba95614d41ba77a95bd1609" +
+        "31a147a120d9008e5552ee3a74ae92047eeb5442546b5ca00fe1c6e18be2aef5d6b126150743b" +
+        "fe15cac164438414d04846ff2e36c4732074f2b0d81ce7c099a224039bf9e9e48903a6bc651d8" +
+        "685d9a5396d294ad16577774148c323df1c4bc81e1a7c8b1d0c566356c33edd72d2c50f802980" +
+        "64dd59a6d0ca6992856a30e2ad2a694bae11f9bec516d53f2791a3a9b0e403d597131631530e3" +
+        "6685acb5c9ee5e39054fd3790afc7c0a38a474a2991ee4c5fdfd2beba311b71835a44fc255d0f" +
+        "cdf32a9cd721846f2a8a16c48e6f4bd3e7cd329885e5bb6c846b90efc84a943ced779e58158b1";
 
     var zoomchartsIdsIgnore = ["loaded", "resetCoordinates", "resetLocked"];
 

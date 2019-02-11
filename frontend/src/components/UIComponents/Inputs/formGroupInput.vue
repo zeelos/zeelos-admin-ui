@@ -9,7 +9,7 @@
     <slot name="label">
       <label v-if="label" :class="labelClasses">
         {{label}}
-        <span v-if="required">*</span>
+        <span class="text-danger" v-if="required">*</span>
       </label>
     </slot>
 
@@ -27,7 +27,8 @@
         v-on="listeners"
         v-bind="$attrs"
         class="form-control"
-        :class="[{valid: value && !error}, inputClasses, error ? 'form-control-danger' : '']"
+        :required="required"
+        :class="[{'is-valid': hasSuccess}, inputClasses, {'is-invalid': error}]"
         aria-describedby="addon-right addon-left">
     </slot>
     <div v-if="addonRightIcon || $slots.addonRight" class="input-group-append">
@@ -39,7 +40,7 @@
     </div>
     <slot name="infoBlock"></slot>
     <slot name="helpBlock">
-      <div class="text-danger invalid-feedback" style="display: block;" :class="{'mt-2': hasIcon}" v-if="error">
+      <div class="invalid-feedback error-text" :class="{'mt-2': hasIcon}" v-if="error">
         {{ error }}
       </div>
     </slot>
@@ -133,6 +134,8 @@
     }
   }
 </script>
-<style>
-
+<style scoped>
+.error-text {
+  display: block;
+}
 </style>

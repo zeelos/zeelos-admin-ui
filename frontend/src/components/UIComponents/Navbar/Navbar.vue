@@ -2,7 +2,14 @@
   <nav :class="classes" class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <slot></slot>
-
+      <slot name="toggle-button">
+        <button aria-controls="navigation-index"
+                @click="toggleMenu"
+                aria-expanded="true" aria-label="Toggle navigation"
+                class="navbar-toggler" data-toggle="collapse" type="button"><span
+          class="navbar-toggler-bar navbar-kebab"></span><span class="navbar-toggler-bar navbar-kebab"></span><span
+          class="navbar-toggler-bar navbar-kebab"></span></button>
+      </slot>
       <CollapseTransition>
         <div class="collapse navbar-collapse justify-content-end show"
              :class="navbarMenuClasses"
@@ -17,7 +24,7 @@
   </nav>
 </template>
 <script>
-  import {CollapseTransition} from 'vue2-transitions';
+  import { CollapseTransition } from 'vue2-transitions';
 
   export default {
     name: 'navbar',
@@ -49,6 +56,10 @@
         description: 'Navbar type (primary|info|danger|default|warning|success)'
       }
     },
+    model: {
+      prop: 'showNavbar',
+      event: 'change'
+    },
     components: {
       CollapseTransition
     },
@@ -57,9 +68,14 @@
         let color = `bg-${this.type}`;
         let navPosition = `navbar-${this.position}`;
         return [
-          {'navbar-transparent': !this.showNavbar && this.transparent},
-          {[color]: this.showNavbar || !this.transparent},
+          { 'navbar-transparent': !this.showNavbar && this.transparent },
+          { [color]: this.showNavbar || !this.transparent },
           navPosition]
+      }
+    },
+    methods: {
+      toggleMenu() {
+        this.$emit('change', !this.showNavbar);
       }
     }
   }

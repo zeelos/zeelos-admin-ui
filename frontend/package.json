@@ -5,23 +5,23 @@
   "author": "zeelos.io <dev@zeelos.io>",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vue-cli-service serve --port=9080 --open"
   },
   "dependencies": {
-    "@dvsl/zoomcharts": "^1.18.4",
-    "axios": "^0.18.0",
+    "@dvsl/zoomcharts": "^1.18.8",
     "chart.js": "^2.7.2",
-    "element-ui": "^2.4.4",
-    "fullcalendar": "^3.6.2",
+    "d3": "^5.7.0",
+    "datamaps": "^0.5.9",
+    "element-ui": "^2.4.11",
+    "fullcalendar": "^4.0.0-alpha.3",
     "google-maps": "^3.2.1",
-    "jquery": "^3.2.1",
-    "jvectormap-next": "^3.0.0",
+    "nprogress": "^0.2.0",
     "perfect-scrollbar": "0.7.1",
     "sweetalert2": "^6.11.4",
-    "vee-validate": "^2.1.0-beta.6",
-    "vue": "^2.5.16",
+    "topojson": "^3.0.2",
+    "vee-validate": "^2.1.4",
+    "vue": "^2.5.21",
     "vue-chartjs": "^3.3.2",
     "vue-clickaway": "^2.2.2",
     "vue-notifyjs": "^0.4.3",
@@ -29,37 +29,21 @@
     "vue2-transitions": "^0.2.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
-    "@vue/cli-service": "^3.0.0-rc.10",
-    "vue-template-compiler": "^2.5.16",
+    "@vue/cli-plugin-babel": "^3.2.2",
+    "@vue/cli-service": "^3.2.2",
     "babel-plugin-component": "^1.1.1",
     "es6-promise": "^4.2.4",
-    "node-sass": "^4.9.2",
-    "sass-loader": "^7.0.3"
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.21"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.0.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 10"
   ]
 }

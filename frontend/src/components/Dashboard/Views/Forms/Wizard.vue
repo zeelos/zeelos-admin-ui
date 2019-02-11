@@ -2,7 +2,7 @@
   <div>
     <div class="row d-flex justify-content-center">
       <div class="col-md-10 mr-auto ml-auto">
-          <wizard>
+          <wizard @complete="wizardComplete">
             <template slot="header">
               <h3 class="card-title">Build your profile</h3>
               <h3 class="description">This information will let us know more about you.</h3>

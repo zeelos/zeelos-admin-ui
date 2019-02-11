@@ -180,7 +180,7 @@
  .bootstrap-switch.bootstrap-switch-disabled,
  .bootstrap-switch.bootstrap-switch-readonly,
  .bootstrap-switch.bootstrap-switch-indeterminate {
-   cursor: default !important;
+   cursor: not-allowed !important;
  }
 
  .bootstrap-switch.bootstrap-switch-disabled .bootstrap-switch-handle-on,

@@ -135,30 +135,34 @@
             <h4 class="card-title">Customisable Select</h4>
             <div class="row">
               <div class="col-sm-6">
-                <el-select class="select-danger"
-                           size="large"
-                           placeholder="Single Select"
-                           v-model="selects.simple">
-                  <el-option v-for="option in selects.countries"
-                             class="select-danger"
-                             :value="option.value"
-                             :label="option.label"
-                             :key="option.label">
-                  </el-option>
-                </el-select>
+                <fg-input>
+                  <el-select class="select-danger"
+                             size="large"
+                             placeholder="Single Select"
+                             v-model="selects.simple">
+                    <el-option v-for="option in selects.countries"
+                               class="select-danger"
+                               :value="option.value"
+                               :label="option.label"
+                               :key="option.label">
+                    </el-option>
+                  </el-select>
+                </fg-input>
               </div>
               <div class="col-sm-6">
-                <el-select multiple class="select-primary"
-                           size="large"
-                           v-model="selects.multiple"
-                           placeholder="Multiple Select">
-                  <el-option v-for="option in selects.countries"
-                             class="select-primary"
-                             :value="option.value"
-                             :label="option.label"
-                             :key="option.label">
-                  </el-option>
-                </el-select>
+                <fg-input>
+                  <el-select multiple class="select-primary"
+                             size="large"
+                             v-model="selects.multiple"
+                             placeholder="Multiple Select">
+                    <el-option v-for="option in selects.countries"
+                               class="select-primary"
+                               :value="option.value"
+                               :label="option.label"
+                               :key="option.label">
+                    </el-option>
+                  </el-select>
+                </fg-input>
               </div>
               <div class="col-sm-6">
                 <br/>
@@ -329,6 +333,5 @@
 <style>
   .extended-forms .el-select {
     width: 100%;
-    margin-bottom: 30px;
   }
 </style>

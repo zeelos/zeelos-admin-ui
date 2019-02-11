@@ -1,15 +1,15 @@
 export default [
-  // {
-  //   name: 'Dashboard',
-  //   icon: 'nc-icon nc-bank',
-  //   path: '/admin/overview'
-  // },
   {
-      name: 'Topology',
-      icon: 'nc-icon nc-bank',
-      path: '/admin/topology'
+    name: 'Topology',
+    icon: 'nc-icon nc-bank',
+    path: '/admin/topology'
   },
-/*
+  /*
+  {
+    name: 'Dashboard',
+    icon: 'nc-icon nc-bank',
+    path: '/admin/overview'
+  },
   {
     name: 'Pages',
     icon: 'nc-icon nc-book-bookmark',
@@ -139,5 +139,5 @@ export default [
     icon: 'nc-icon nc-calendar-60',
     path: '/calendar'
   },
-  */
+*/
 ]

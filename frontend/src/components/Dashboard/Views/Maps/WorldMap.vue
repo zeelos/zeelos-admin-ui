@@ -2,52 +2,85 @@
   <div id="worldMap" style="height: 300px;"></div>
 </template>
 <script>
-  import $ from 'jquery'
+  import 'd3';
+  import * as d3 from 'd3';
+  import 'topojson';
+  import DataMap from 'datamaps'
+  import { throttle } from "src/util/throttle";
+
   export default {
-    methods: {
-      initVectorMap () {
-        const mapData = {
-          'AU': 760,
-          'BR': 550,
-          'CA': 120,
-          'DE': 1300,
-          'FR': 540,
-          'GB': 690,
-          'GE': 200,
-          'IN': 200,
-          'RO': 600,
-          'RU': 300,
-          'US': 2920
+    data() {
+      return {
+        color1: '#AAAAAA',
+        color2: '#444444',
+        highlightFillColor: '#66615B',
+        highlightBorderColor: '#f1f1f1',
+        mapData: {
+          'AUS': 760,
+          'BRA': 550,
+          'CAN': 120,
+          'DEU': 1300,
+          'FRA': 540,
+          'GBR': 690,
+          'GEO': 200,
+          'IND': 200,
+          'ROU': 600,
+          'RUS': 300,
+          'USA': 2920
         }
-
-        $('#worldMap').vectorMap({
-          map: 'world_mill_en',
-          backgroundColor: 'transparent',
-          zoomOnScroll: false,
-          regionStyle: {
-            initial: {
-              fill: '#e4e4e4',
-              'fill-opacity': 0.9,
-              stroke: 'none',
-              'stroke-width': 0,
-              'stroke-opacity': 0
-            }
-          },
-
-          series: {
-            regions: [{
-              values: mapData,
-              scale: ['#AAAAAA', '#444444'],
-              normalizeFunction: 'polynomial'
-            }]
-          }
-        })
       }
     },
-    async mounted () {
-      window.$ = window.jQuery = $
-      await import('jvectormap-next')
-      await import('./world_map')
+    methods: {
+      generateColors(length) {
+        return d3.scaleLinear()
+          .domain([0, length])
+          .range([this.color1, this.color2]);
+      },
+      generateMapColors() {
+        let mapDataValues = Object.values(this.mapData);
+        let maxVal = Math.max(...mapDataValues);
+        let colors = this.generateColors(maxVal);
+        let mapData = {};
+        let fills = {
+          defaultFill: "#e4e4e4",
+        };
+        for (let key in this.mapData) {
+          let val = this.mapData[key];
+          fills[key] = colors(val);
+          mapData[key] = {
+            fillKey: key,
+            value: val
+          };
+        }
+        return {
+          mapData,
+          fills
+        }
+      },
+      initVectorMap() {
+        let { fills, mapData } = this.generateMapColors();
+        let worldMap = new DataMap({
+          scope: 'world',
+          element: document.getElementById("worldMap"),
+          fills,
+          data: mapData,
+          responsive: true,
+          geographyConfig: {
+            borderWidth: 0.5,
+            borderOpacity: 0.8,
+            highlightFillColor: this.highlightFillColor,
+            highlightBorderColor: this.highlightBorderColor,
+            highlightBorderWidth: 0.5,
+            highlightBorderOpacity: 0.8
+          },
+        });
+        let resizeFunc = worldMap.resize.bind(worldMap);
+        window.addEventListener('resize', () => {
+          throttle(resizeFunc, 40)
+        }, false);
+      }
+    },
+    async mounted() {
       this.initVectorMap()
     }
   }

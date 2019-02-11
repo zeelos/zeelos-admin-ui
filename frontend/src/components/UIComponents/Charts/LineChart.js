@@ -1,5 +1,6 @@
-import {Line} from 'vue-chartjs'
-import {hexToRGB} from "./utils";
+import { Line } from 'vue-chartjs'
+import reactiveChartMixin from './mixins/reactiveChart';
+import { hexToRGB } from "./utils";
 
 const chartColor = "#FFFFFF";
 const gradientChartOptionsConfiguration = {
@@ -49,6 +50,7 @@ const gradientChartOptionsConfiguration = {
 export default {
   name: 'line-chart',
   extends: Line,
+  mixins: [reactiveChartMixin],
   props: {
     labels: {
       type: [Object, Array],
@@ -75,30 +77,43 @@ export default {
       description: 'Chart title'
     },
   },
+  methods: {
+    assignChartData({ data }) {
+      let color = this.color || this.fallBackColor;
+      return {
+        labels: this.labels || [],
+        datasets: this.datasets ? this.datasets : [{
+          label: this.title || '',
+          borderColor: color,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          fill: false,
+          borderWidth: 3,
+          data: this.data || data
+        }]
+      }
+    },
+    assignChartOptions(initialConfig) {
+      let color = this.color || this.fallBackColor;
+      const ctx = document.getElementById(this.chartId).getContext('2d');
+      const gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+      gradientStroke.addColorStop(0, color);
+      gradientStroke.addColorStop(1, chartColor);
+
+      const gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+      gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+      gradientFill.addColorStop(1, hexToRGB(color, 0.4));
+
+      let extraOptions = this.extraOptions || {}
+      return {
+        ...initialConfig,
+        ...extraOptions
+      };
+    }
+  },
   mounted() {
-    let fallBackColor = '#f96332';
-    let color = this.color || fallBackColor;
-    const ctx = document.getElementById(this.chartId).getContext('2d');
-    const gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-    gradientStroke.addColorStop(0, color);
-    gradientStroke.addColorStop(1, chartColor);
-
-    const gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-    gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-    gradientFill.addColorStop(1, hexToRGB(color, 0.4));
-
-    let chartOptions = Object.assign(gradientChartOptionsConfiguration, this.extraOptions || {})
-    this.renderChart({
-      labels: this.labels || [],
-      datasets: this.datasets ? this.datasets : [{
-        label: this.title || '',
-        borderColor: color,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: false,
-        borderWidth: 3,
-        data: this.data || []
-      }]
-    }, chartOptions);
+    this.chartData = this.assignChartData({});
+    this.options = this.assignChartOptions(gradientChartOptionsConfiguration);
+    this.renderChart(this.chartData, this.options);
   }
 }

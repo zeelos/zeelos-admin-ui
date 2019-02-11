@@ -1,5 +1,10 @@
 <template>
-  <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" :class="switchClass">
+  <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate"
+       :class="[switchClass,
+          {'bootstrap-switch-disabled': disabled},
+          {'bootstrap-switch-readonly': readonly},
+          {'bootstrap-switch-indeterminate': indeterminate}
+       ]">
     <div class="bootstrap-switch-container" @click="triggerToggle()">
       <span class="bootstrap-switch-handle-on " :class="`bootstrap-switch-${type}`">
         <slot name="on">
@@ -16,7 +21,7 @@
   </div>
 </template>
 <script>
-  export default{
+  export default {
     name: 'p-switch',
     props: {
       value: {
@@ -26,6 +31,14 @@
       disabled: {
         type: [Boolean, String],
         description: 'Whether switch is disabled'
+      },
+      readonly: {
+        type: [Boolean, String],
+        description: 'Whether switch is readonly'
+      },
+      indeterminate: {
+        type: [Boolean, String],
+        description: 'Whether switch is indeterminate'
       },
       onText: {
         type: String,
@@ -42,22 +55,25 @@
       }
     },
     computed: {
-      switchClass () {
+      switchClass() {
         let base = 'bootstrap-switch-'
         let state = this.model ? 'on' : 'off'
         return base + state
       },
       model: {
-        get () {
+        get() {
           return this.value
         },
-        set (value) {
+        set(value) {
+          if(this.disabled || this.readonly){
+            return;
+          }
           this.$emit('input', value)
         }
       }
     },
     methods: {
-      triggerToggle () {
+      triggerToggle() {
         this.model = !this.model
       }
     }

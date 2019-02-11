@@ -12,7 +12,9 @@
            :class="[{'modal-notice': type === 'notice'}, modalClasses]">
         <div class="modal-content">
 
-          <div class="modal-header" :class="headerClasses">
+          <div class="modal-header"
+               v-if="showHeader"
+               :class="headerClasses">
             <slot name="close-button">
               <button type="button"
                       v-if="showClose"
@@ -20,7 +22,7 @@
                       class="close"
                       data-dismiss="modal"
                       :aria-hidden="!show">
-                <i class="now-ui-icons ui-1_simple-remove"></i>
+                <i class="nc-icon nc-simple-remove"></i>
               </button>
             </slot>
             <slot name="header"></slot>
@@ -49,6 +51,10 @@
     },
     props: {
       show: Boolean,
+      showHeader: {
+        type: Boolean,
+        default: true
+      },
       showClose: {
         type: Boolean,
         default: true

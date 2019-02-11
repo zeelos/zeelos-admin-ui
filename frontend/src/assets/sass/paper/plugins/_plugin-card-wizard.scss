@@ -13,6 +13,10 @@
       padding-bottom: 40px;
     }
 
+    &.card-transparent .card-header {
+      padding-top: 0 !important;
+    }
+
     .nav-pills .nav-item .nav-link{
         padding: 12px;
     }

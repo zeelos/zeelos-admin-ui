@@ -24,6 +24,7 @@
 @import 'paper/plugins/plugin-jquery.jvectormap';
 @import 'paper/plugins/plugin-fullcalendar';
 @import 'paper/plugins/plugin-vue-notifyjs';
+@import 'paper/plugins/plugin-nprogress';
 
 // Element UI plugins
 @import "paper/plugins/element-ui/plugin-tags";
@@ -75,6 +76,7 @@
 @import "paper/cards/card-lock";
 @import "paper/cards/card-pricing";
 @import "paper/cards/card-profile";
+@import "paper/cards/card-plain";
 @import "paper/cards/card-signup";
 @import "paper/cards/card-stats-mini";
 @import "paper/cards/card-stats";

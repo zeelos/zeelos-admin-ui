@@ -17,7 +17,7 @@
 
     &:focus{
         border: 1px solid $dark-gray;
-        @include box-shadow(none);
+        box-shadow: none !important;
         outline: 0 !important;
         color: $default-color;
 
@@ -46,9 +46,12 @@
             padding-right: 2.5em !important;
         }
     }
-    .has-success &:focus{
+    &.is-valid {
+      border: 1px solid $medium-gray;
+      &:focus {
         border: 1px solid $success-color;
         color: $success-color;
+      }
     }
     .has-danger &{
         background-color: $danger-input-bg;
@@ -64,19 +67,14 @@
         border: 1px solid $danger-color;
     }
 
-    & + .form-control-feedback{
-        border-radius: $border-radius-large;
-        font-size: $font-size-base;
-        margin-top: -7px;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        vertical-align: middle;
-    }
-
     .open &{
         border-radius: $border-radius-large $border-radius-large 0 0;
         border-bottom-color: transparent;
+    }
+
+    &.is-valid,
+    &.is-invalid {
+      background-image: none;
     }
 
     & + .input-group-append .input-group-text,
@@ -131,17 +129,6 @@
     .input-group-append .input-group-text{
         background-color: $opacity-gray-3;
         border: none;
-    }
-}
-
-.has-error{
-    .form-control-feedback, .control-label{
-        color: $danger-color;
-    }
-}
-.has-success{
-    .form-control-feedback, .control-label{
-        color: $success-color;
     }
 }
 
@@ -275,7 +262,7 @@
         margin-top: 9px;
     }
     &.has-danger {
-      .error {
+      .invalid-feedback {
         color: $danger-color;
       }
     }

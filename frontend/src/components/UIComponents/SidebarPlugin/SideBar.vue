@@ -36,11 +36,12 @@
   </div>
 </template>
 <script>
+  import 'perfect-scrollbar/dist/css/perfect-scrollbar.css'
   export default {
     props: {
       title: {
         type: String,
-        default: 'Zeelos',
+        default: 'Dashboard',
         description: 'Sidebar title'
       },
       backgroundColor: {
@@ -83,7 +84,6 @@
     },
     methods: {
       async initScrollBarAsync () {
-        await import('perfect-scrollbar/dist/css/perfect-scrollbar.css')
         const PerfectScroll = await import('perfect-scrollbar')
         PerfectScroll.initialize(this.$refs.sidebarScrollArea)
       }

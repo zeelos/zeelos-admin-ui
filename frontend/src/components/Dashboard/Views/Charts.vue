@@ -15,6 +15,7 @@
         <line-chart :labels="activeUsersChart.labels"
                     :height="250"
                     :color="activeUsersChart.color"
+                    :extra-options="activeUsersChart.options"
                     :data="activeUsersChart.data">
         </line-chart>
       </card>
@@ -100,11 +101,28 @@
   </div>
 </template>
 <script>
-  import { Card, ChartCard } from 'src/components/UIComponents'
+  import { Card } from 'src/components/UIComponents'
+  import ChartCard from 'src/components/UIComponents/Cards/ChartCard'
   import LineChart from 'src/components/UIComponents/Charts/LineChart'
   import BarChart from 'src/components/UIComponents/Charts/BarChart'
   import PieChart from 'src/components/UIComponents/Charts/PieChart'
 
+  const tooltipOptions = {
+    tooltipFillColor: "rgba(0,0,0,0.5)",
+    tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+    tooltipFontSize: 14,
+    tooltipFontStyle: "normal",
+    tooltipFontColor: "#fff",
+    tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+    tooltipTitleFontSize: 14,
+    tooltipTitleFontStyle: "bold",
+    tooltipTitleFontColor: "#fff",
+    tooltipYPadding: 6,
+    tooltipXPadding: 6,
+    tooltipCaretSize: 8,
+    tooltipCornerRadius: 6,
+    tooltipXOffset: 10,
+  };
   export default {
     components: {
       Card,
@@ -118,7 +136,10 @@
         activeUsersChart: {
           labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
           data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610],
-          color: '#6bd098'
+          color: '#6bd098',
+          options: {
+            tooltips: tooltipOptions,
+          }
         },
         stockChart: {
           labels: ["6pm", "9pm", "11pm", "2am", "4am", "6am", "8am"],
@@ -135,6 +156,7 @@
           }],
           color: '#f17e5d',
           options: {
+            tooltips: tooltipOptions,
             scales: {
               yAxes: [{
 
@@ -205,22 +227,7 @@
             }
           ],
           options: {
-            tooltips: {
-              tooltipFillColor: "rgba(0,0,0,0.5)",
-              tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-              tooltipFontSize: 14,
-              tooltipFontStyle: "normal",
-              tooltipFontColor: "#fff",
-              tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-              tooltipTitleFontSize: 14,
-              tooltipTitleFontStyle: "bold",
-              tooltipTitleFontColor: "#fff",
-              tooltipYPadding: 6,
-              tooltipXPadding: 6,
-              tooltipCaretSize: 8,
-              tooltipCornerRadius: 6,
-              tooltipXOffset: 10,
-            }
+            tooltips: tooltipOptions
           }
         },
         emailChart: {
@@ -236,7 +243,10 @@
             ],
             borderWidth: 0,
             data: [542, 480, 430]
-          }]
+          }],
+          options: {
+            tooltips: tooltipOptions
+          }
         },
         chartHours: {
           data: {
@@ -269,6 +279,7 @@
             ]
           },
           options: {
+            tooltips: tooltipOptions,
             scales: {
               yAxes: [{
 

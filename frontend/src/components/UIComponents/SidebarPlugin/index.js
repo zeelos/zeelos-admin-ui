@@ -38,6 +38,7 @@ const SidebarPlugin = {
       }
     })
 
+    Vue.prototype.$sidebar = SidebarStore
     Object.defineProperty(Vue.prototype, '$sidebar', {
       get () {
         return this.$root.sidebarStore

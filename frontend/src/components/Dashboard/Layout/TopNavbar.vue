@@ -1,5 +1,5 @@
 <template>
-  <navbar :show-navbar="showNavbar">
+  <navbar v-model="showNavbar">
     <div class="navbar-wrapper">
       <div class="navbar-minimize">
         <button id="minimizeSidebar" class="btn btn-icon btn-round" @click="minimizeSidebar">
@@ -12,7 +12,7 @@
 
         </navbar-toggle-button>
       </div>
-      <a class="navbar-brand" href="#pablo">Administration</a>
+      <a class="navbar-brand" href="#pablo">Dashboard</a>
     </div>
 
     <template slot="navbar-menu">

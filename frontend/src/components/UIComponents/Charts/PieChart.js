@@ -66,21 +66,34 @@ export default {
       description: 'Chart title'
     },
   },
+  methods: {
+    assignChartData() {
+      return {
+        labels: this.labels || [],
+        datasets: this.datasets ? this.datasets : [{
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          backgroundColor: [
+            '#e3e3e3',
+            '#4acccd',
+            '#fcc468'
+          ],
+          borderWidth: 0,
+          data: this.data || []
+        }]
+      }
+    },
+    assignChartOptions(initialConfig) {
+      let extraOptions = this.extraOptions || {};
+      return {
+        ...initialConfig,
+        ...extraOptions
+      };
+    }
+  },
   mounted() {
-    let chartOptions = Object.assign(defaultOptions, this.extraOptions || {})
-    this.renderChart({
-      labels: this.labels || [],
-      datasets: this.datasets ? this.datasets : [{
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        backgroundColor: [
-          '#e3e3e3',
-          '#4acccd',
-          '#fcc468'
-        ],
-        borderWidth: 0,
-        data: this.data || []
-      }]
-    }, chartOptions);
+    this.chartData = this.assignChartData({});
+    this.options = this.assignChartOptions(defaultOptions);
+    this.renderChart(this.chartData, this.options);
   }
 }

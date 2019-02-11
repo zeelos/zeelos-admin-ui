@@ -4,7 +4,7 @@
       <div class="col-md-10 ml-auto mr-auto">
         <div class="card card-calendar">
           <div class="card-body">
-            <div id="fullCalendar"></div>
+            <div id="fullCalendar" ref="calendar"></div>
           </div>
         </div>
       </div>
@@ -13,15 +13,14 @@
 </template>
 <script>
   import swal from 'sweetalert2'
-  import $ from 'jquery'
-  import 'fullcalendar'
+  import { Calendar } from 'fullcalendar'
 
-  var today = new Date()
-  var y = today.getFullYear()
-  var m = today.getMonth()
-  var d = today.getDate()
+  const today = new Date();
+  const y = today.getFullYear();
+  const m = today.getMonth();
+  const d = today.getDate();
   export default {
-    data () {
+    data() {
       return {
         events: [
           {
@@ -86,10 +85,9 @@
       }
     },
     methods: {
-      initCalendar ($) {
-        var self = this
-        var $calendar = $('#fullCalendar')
-        $calendar.fullCalendar({
+      initCalendar() {
+        const self = this;
+        let $calendar = new Calendar(this.$refs.calendar, {
           header: {
             left: 'title',
             center: 'month,agendaWeek,agendaDay',
@@ -100,52 +98,65 @@
           selectHelper: true,
           views: {
             month: { // name of view
-              titleFormat: 'MMMM YYYY'
+              titleFormat: {
+                month: 'long',
+                year: 'numeric'
+              }
               // other view-specific options here
             },
             week: {
-              titleFormat: ' MMMM D YYYY'
+              titleFormat: {
+                month: 'long',
+                day: '2-digit',
+                year: 'numeric'
+              }
             },
             day: {
-              titleFormat: 'D MMM, YYYY'
+              titleFormat: {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+              }
             }
           },
-          select: function (start, end) {
+          select: async ({ start, end }) => {
             // on select we show the Sweet Alert modal with an input
-            swal({
+            let result = await swal({
               title: 'Create an Event',
               html: '<div class="form-group">' +
-              '<input class="form-control" placeholder="Event Title" id="input-field">' +
-              '</div>',
+                '<input class="form-control" placeholder="Event Title" id="input-field">' +
+                '</div>',
               showCancelButton: true,
               confirmButtonClass: 'btn btn-success',
               cancelButtonClass: 'btn btn-danger',
               buttonsStyling: false
-            }).then(function (result) {
-              var eventData
-              var eventTitle = $('#input-field').val()
+            });
+            if (result) {
+              let eventData
+              let eventTitle = document.getElementById('input-field').value;
               if (eventTitle) {
                 eventData = {
                   title: eventTitle,
                   start: start,
-                  end: end
-                }
-                $calendar.fullCalendar('renderEvent', eventData, true) // stick? = true
+                  end: end,
+                  allDay: true
+                };
+                $calendar.addEvent(eventData);
               }
-              $calendar.fullCalendar('unselect')
-            })
+              $calendar.setOption('unselect')
+            }
           },
           editable: true,
           eventLimit: true, // allow "more" link when too many events
 
           // color classes: [ event-blue | event-azure | event-green | event-orange | event-red ]
           events: self.events
-        })
+        });
+        $calendar.render();
       }
     },
-    mounted () {
-      window.$ = window.jQuery = $
-      this.initCalendar($)
+    mounted() {
+      this.initCalendar();
     }
   }
 </script>

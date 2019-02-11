@@ -1,10 +1,10 @@
 <template>
-  <div class="wizard-container">
-    <div class="card card-wizard active">
+  <div class="wizard-container" :id="wizardId">
+    <div class="card card-wizard active" :class="[wizardClasses, {'card-transparent': plain}]">
       <form @submit.prevent>
         <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
         <div class="card-header text-center">
-          <slot name="header">
+          <slot name="header" v-if="showHeader && !$slots.header">
             <h3 class="card-title">{{title}}</h3>
             <h3 class="description">{{subTitle}}</h3>
           </slot>
@@ -80,11 +80,25 @@
   </div>
 </template>
 <script>
-  import {throttle} from './throttle';
+  import {throttle} from 'src/util/throttle';
 
   export default {
     name: 'simple-wizard',
     props: {
+      wizardClasses: {
+        type: [String, Object, Array],
+        description: 'Wizard card classes'
+      },
+      plain: {
+        type: Boolean,
+        default: false,
+        description: 'Whether wizard should be on plain background'
+      },
+      showHeader: {
+        type: Boolean,
+        default: true,
+        description: 'Whether Wizard header should be displayed'
+      },
       startIndex: {
         type: Number,
         default: 0,
@@ -139,7 +153,8 @@
         tabs: [],
         activeTabIndex: 0,
         tabLinkWidth: 0,
-        tabLinkHeight: 50
+        tabLinkHeight: 50,
+        wizardId: Math.random().toString(36).substring(7)
       }
     },
     computed: {
@@ -188,6 +203,7 @@
           tab.active = true;
           tab.checked = true;
         }
+        this.onResize();
         this.tabs.splice(index, 0, tab)
       },
       removeTab(tab) {
@@ -213,6 +229,9 @@
       },
       async nextTab() {
         let isValid = await this.validate();
+        if(isValid && this.activeTabIndex === this.tabCount - 1){
+          this.$emit('complete');
+        }
         if (isValid && this.activeTabIndex < this.tabCount - 1) {
           this.activeTabIndex++
         }
@@ -235,7 +254,7 @@
         }
       },
       onResize() {
-        let tabLinks = document.getElementsByClassName('wizard-tab-link');
+        let tabLinks = document.querySelectorAll(`#${this.wizardId} .wizard-tab-link`);
         if (tabLinks.length > 0 && this.tabCount > 0) {
           let {clientWidth, clientHeight} = tabLinks[0];
           this.tabLinkWidth = clientWidth;

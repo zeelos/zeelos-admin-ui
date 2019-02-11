@@ -18,12 +18,14 @@
       input,
       .el-input__icon{
         background-color: $color;
+        transition: none;
       }
 
     }
     .el-input__icon{
       border-radius:20px;
-      height: 20px;
+      height: 40px;
+      width: 30px;
     }
 
     input{

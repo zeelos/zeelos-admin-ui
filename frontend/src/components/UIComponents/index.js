@@ -9,8 +9,6 @@ import FgInput from './Inputs/formGroupInput'
 import Checkbox from './Inputs/Checkbox'
 import Radio from './Inputs/Radio'
 import StatsCard from './Cards/StatsCard'
-import CircleChartCard from './Cards/CircleChartCard'
-import ChartCard from './Cards/ChartCard'
 import InfoSection from './InfoSection'
 import Collapse from './Collapse/Collapse'
 import CollapseItem from './Collapse/CollapseItem'
@@ -26,8 +24,6 @@ import Wizard from './Wizard/Wizard'
 import WizardTab from './Wizard/WizardTab'
 import IconCheckbox from './Inputs/IconCheckbox'
 
-import LineChart from './Charts/LineChart'
-import BarChart from './Charts/BarChart'
 
 export {
   Card,
@@ -46,10 +42,6 @@ export {
   Modal,
   Radio,
   StatsCard,
-  CircleChartCard,
-  BarChart,
-  LineChart,
-  ChartCard,
   Collapse,
   CollapseItem,
   InfoSection,

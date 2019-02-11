@@ -11,6 +11,7 @@ import App from './App.vue'
 import GlobalComponents from './globalComponents'
 import GlobalDirectives from './globalDirectives'
 import SideBar from './components/UIComponents/SidebarPlugin'
+import initProgress from './progressbar';
 
 // router setup
 import routes from './routes/routes'
@@ -18,11 +19,9 @@ import routes from './routes/routes'
 // library imports
 
 import './assets/sass/paper-dashboard.scss'
-import './assets/sass/element_variables.scss'
 import './assets/sass/demo.scss'
 
 import sidebarLinks from './sidebarLinks'
-
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(GlobalDirectives)
@@ -37,6 +36,8 @@ const router = new VueRouter({
   routes, // short for routes: routes
   linkActiveClass: 'active'
 })
+
+initProgress(router);
 
 /* eslint-disable no-new */
 new Vue({

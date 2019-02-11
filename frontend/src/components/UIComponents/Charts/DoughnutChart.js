@@ -1,4 +1,4 @@
-import {Pie} from 'vue-chartjs'
+import { Pie } from 'vue-chartjs'
 import pluginChartText from './plugins/plugin-chart-text';
 
 const defaultOptions = {
@@ -77,19 +77,32 @@ export default {
       description: 'Chart title'
     },
   },
+  methods: {
+    assignChartData() {
+      return {
+        labels: this.labels || [],
+        datasets: this.datasets ? this.datasets : [{
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          backgroundColor: [this.color || '#4acccd', this.secondaryColor || '#f4f3ef'],
+          borderWidth: 0,
+          data: this.data || []
+        }]
+      }
+    },
+    assignChartOptions(initialConfig) {
+      let extraOptions = this.extraOptions || {};
+      return {
+        ...initialConfig,
+        ...extraOptions
+      };
+    }
+  },
   mounted() {
     this.addPlugin(pluginChartText);
-    let chartOptions = Object.assign(defaultOptions, this.extraOptions || {})
-    chartOptions.elements.center.text = this.data ? `${this.data[0]}%` : null;
-    this.renderChart({
-      labels: this.labels || [],
-      datasets: this.datasets ? this.datasets : [{
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        backgroundColor: [this.color || '#4acccd', this.secondaryColor || '#f4f3ef'],
-        borderWidth: 0,
-        data: this.data || []
-      }]
-    }, chartOptions);
+    this.chartData = this.assignChartData({});
+    this.options = this.assignChartOptions(defaultOptions);
+    this.options.elements.center.text = this.data ? `${this.data[0]}%` : null;
+    this.renderChart(this.chartData, this.options);
   }
 }
