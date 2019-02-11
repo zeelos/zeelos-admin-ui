@@ -25,7 +25,7 @@
     </licenses>
 
     <properties>
-        <version.thorntail>2.2.0.Final</version.thorntail>
+        <version.thorntail>2.3.0.Final</version.thorntail>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,7 +35,7 @@
         <dependencies>
             <dependency>
                 <groupId>io.thorntail</groupId>
-                <artifactId>bom-all</artifactId>
+                <artifactId>bom</artifactId>
                 <version>${version.thorntail}</version>
                 <scope>import</scope>
                 <type>pom</type>

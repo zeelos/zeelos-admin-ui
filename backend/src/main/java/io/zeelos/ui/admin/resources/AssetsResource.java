@@ -52,6 +52,8 @@ public class AssetsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonObject retrieveTopology() {
+        log.info("retrieving topology ..");
+
         final JsonObjectBuilder structure = Json.createObjectBuilder();
 
         final JsonArrayBuilder n = Json.createArrayBuilder();
