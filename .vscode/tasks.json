@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "mvn thorntail:run",
+            "type": "shell",
+            "command": "cd backend && mvn -Dthorntail.debug.port=9000 thorntail:run",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "dev",
+            "path": "frontend/",
+            "problemMatcher": []
+        }
+    ]
+}

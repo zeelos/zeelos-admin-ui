@@ -15,9 +15,6 @@ bin
 .idea
 *.iml
 
-# Visual Studio Code Files
-.vscode/
-
 # Package Files #
 *.jar
 *.war
@@ -33,3 +30,6 @@ npm-debug.log
 
 # Various OS dependant artifcats
 .DS_Store
+
+#Thorntail cache
+.thorntail-runner-cache/
