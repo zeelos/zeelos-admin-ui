@@ -10,8 +10,7 @@
     <artifactId>backend</artifactId>
     <packaging>war</packaging>
     <properties>
-        <version.orientdb.gremlin>3.0.14</version.orientdb.gremlin>
-        <version.tinkerpop3.core>3.4.0</version.tinkerpop3.core>
+        <version.orientdb.gremlin>3.0.18</version.orientdb.gremlin>
         <version.guava>27.0.1-jre</version.guava>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <resources-maven-plugin.version>3.1.0</resources-maven-plugin.version>
@@ -42,11 +41,6 @@
             <groupId>com.orientechnologies</groupId>
             <artifactId>orientdb-gremlin</artifactId>
             <version>${version.orientdb.gremlin}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tinkerpop</groupId>
-            <artifactId>gremlin-core</artifactId>
-            <version>${version.tinkerpop3.core}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
